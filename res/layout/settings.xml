@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:layout="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:paddingLeft="10dp" android:paddingRight="10dp">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Настройки"
+                    android:id="@+id/textView" android:layout_marginTop="20dp"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Выберите вашу подгруппу"
+                    android:id="@+id/textView3" android:layout_marginTop="10dp"/>
+            <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/groupNumber"
+            >
+                <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Первая подгруппа"
+                        android:id="@+id/firstGroup" android:checked="true"/>
+                <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Вторая подгруппа"
+                        android:id="@+id/secondGroup"/>
+            </RadioGroup>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Настройки уведомлений"
+                    android:id="@+id/textView2" android:layout_marginTop="10dp"/>
+            <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Показывать уведомления"
+                    android:id="@+id/switch1"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Настройки расписания"
+                    android:id="@+id/textView4" android:layout_marginTop="10dp"/>
+            <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Скрывать отмененные пары"
+                    android:id="@+id/hideCanceled"
+            />
+            <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Отмечать прошедшие пары"
+                    android:id="@+id/markEnded"/>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:textAppearance="?android:attr/textAppearanceLarge" android:text="О приложении"
+                              android:id="@+id/textView5" android:layout_marginTop="20dp"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="10dp">
+                <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/imageView" android:src="@drawable/logo"/>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_marginLeft="10dp">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="Yoda for Android"
+                            android:id="@+id/textView6" android:layout_marginLeft="10dp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="Версия: 1.0"
+                            android:id="@+id/textView7" android:layout_marginLeft="10dp"/>
+                    <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Исходный код"
+                            android:id="@+id/button"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

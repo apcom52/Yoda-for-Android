@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lection">#dfef75</color>
+    <color name="practice">#85c0ec</color>
+    <color name="lab">#ed9595</color>
+    <color name="day_label">#4693ce</color>
+</resources>

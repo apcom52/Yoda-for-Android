@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/showPrev"
+            android:title="Предыдущий день"
+            android:showAsAction="ifRoom"
+            android:icon="@drawable/ic_arrow_back_black_48dp"
+            android:onClick="showPrevDay"
+    />
+    <item
+            android:id="@+id/refresh"
+            android:title="Обновить"
+            android:showAsAction="ifRoom"
+            android:icon="@drawable/ic_refresh_black_48dp"
+    />
+    <item
+            android:id="@+id/openCalendar"
+            android:title="Выбрать дату"
+            android:showAsAction="always"
+            android:icon="@drawable/ic_date_range_black_48dp"
+            android:onClick="openCalendar"
+    />
+    <item
+            android:id="@+id/showNext"
+            android:title="Следующий день"
+            android:showAsAction="always"
+            android:icon="@drawable/ic_arrow_forward_black_48dp"
+            android:onClick="showNextDay"
+    />
+    <item
+            android:id="@+id/openWebsite"
+            android:title="Открыть сайт"
+            android:showAsAction="never"
+            android:icon="@drawable/ic_web_black_48dp"
+    />
+    <item
+            android:id="@+id/openSettings"
+            android:title="Настройки"
+            android:showAsAction="never"
+            android:icon="@drawable/ic_settings_black_48dp"
+            android:onClick="openSettings"
+    />
+</menu>

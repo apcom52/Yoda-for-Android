@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="yoda" default="all">
+  
+  
+  <property file="yoda.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.ear"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.android_api_22_platform_(1)" value="${jdk.home.android_api_22_platform_(1)}/../../../../../../Program Files/Java/jdk1.8.0_60/bin"/>
+  <path id="jdk.classpath.android_api_22_platform_(1)">
+    <fileset dir="${jdk.home.android_api_22_platform_(1)}">
+      <include name="platforms/android-22/android.jar"/>
+      <include name="platforms/android-22/data/res"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.android_api_22_platform_(1)}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.android_api_22_platform_(1)}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.android_api_22_platform_(1)"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.android_query.classpath">
+    <pathelement location="${basedir}/libs/android_query.jar"/>
+  </path>
+  
+  <path id="library.volley.classpath">
+    <pathelement location="${basedir}/libs/volley.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module android -->
+  
+  <dirname property="module.android.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.android" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.android" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.android" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.android" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="android.output.dir" value="${module.android.basedir}/out/production/android"/>
+  <property name="android.testoutput.dir" value="${module.android.basedir}/out/test/android"/>
+  
+  <path id="android.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="android.module.production.classpath">
+    <path refid="${module.jdk.classpath.android}"/>
+    <path refid="library.android_query.classpath"/>
+    <path refid="library.volley.classpath"/>
+  </path>
+  
+  <path id="android.runtime.production.module.classpath">
+    <pathelement location="${android.output.dir}"/>
+    <path refid="library.android_query.classpath"/>
+    <path refid="library.volley.classpath"/>
+  </path>
+  
+  <path id="android.module.classpath">
+    <path refid="${module.jdk.classpath.android}"/>
+    <pathelement location="${android.output.dir}"/>
+    <path refid="library.android_query.classpath"/>
+    <path refid="library.volley.classpath"/>
+  </path>
+  
+  <path id="android.runtime.module.classpath">
+    <pathelement location="${android.testoutput.dir}"/>
+    <pathelement location="${android.output.dir}"/>
+    <path refid="library.android_query.classpath"/>
+    <path refid="library.volley.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.android">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.android">
+    <patternset refid="excluded.from.module.android"/>
+  </patternset>
+  
+  <path id="android.module.sourcepath">
+    <dirset dir="${module.android.basedir}">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.android" depends="compile.module.android.production,compile.module.android.tests" description="Compile module android"/>
+  
+  <target name="compile.module.android.production" depends="register.custom.compilers" description="Compile module android; production classes">
+    <mkdir dir="${android.output.dir}"/>
+    <javac2 destdir="${android.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.android}/javac">
+      <compilerarg line="${compiler.args.android}"/>
+      <bootclasspath refid="android.module.bootclasspath"/>
+      <classpath refid="android.module.production.classpath"/>
+      <src refid="android.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.android"/>
+    </javac2>
+    
+    <copy todir="${android.output.dir}">
+      <fileset dir="${module.android.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.android.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.android.tests" depends="register.custom.compilers,compile.module.android.production" description="compile module android; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.android" description="cleanup module">
+    <delete dir="${android.output.dir}"/>
+    <delete dir="${android.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.android" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.android" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
