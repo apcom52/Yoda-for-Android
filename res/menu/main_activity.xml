@@ -32,6 +32,7 @@
             android:title="Открыть сайт"
             android:showAsAction="never"
             android:icon="@drawable/ic_web_black_48dp"
+            android:onClick="openWebsite"
     />
     <item
             android:id="@+id/openSettings"

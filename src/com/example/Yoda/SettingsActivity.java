@@ -1,9 +1,12 @@
 package com.example.Yoda;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -104,5 +107,10 @@ public class SettingsActivity extends Activity {
         Editor ed = settings.edit();
         ed.putBoolean(key, value);
         ed.commit();
+    }
+
+    public void showSource(View view) {
+        Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/apcom52/Yoda-for-Android"));
+        startActivity(browser);
     }
 }

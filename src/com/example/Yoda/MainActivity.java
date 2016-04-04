@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -52,6 +53,7 @@ public class MainActivity extends Activity {
     LinearLayout dayOff;
 
     private static String SETTINGS_FILENAME = "settings";
+    private static String SETTINGS_GROUP_NUMBER = "GROUP_NUMBER";
     private static String SETTINGS_HIDE_CANCELED_LESSONS = "HIDE_CANCELED_LESSONS";
     private static String SETTINGS_MARK_ENDED_LESSONS = "MARK_ENDED_LESSONS";
     private SharedPreferences settings;
@@ -79,7 +81,7 @@ public class MainActivity extends Activity {
         dayLabel.setText(dateformat.format(targetDay.getTime()));
         Log.w("YodaAJAX", "start loading");
 
-        String url = "http://www.vsu-it.ru/api/timetable?day=" + parseDate(targetDay) + "&group=2";
+        String url = "http://www.vsu-it.ru/api/timetable?day=" + parseDate(targetDay) + "&group=" + Integer.toString(settings.getInt(SETTINGS_GROUP_NUMBER, 1));
 
         ArrayList<String> lessons = new ArrayList<String>();
         Context context = this;
@@ -222,5 +224,10 @@ public class MainActivity extends Activity {
             menu.add("Перенести пару");
             menu.add("Отменить пару");
         }
+    }
+
+    public void openWebsite(MenuItem item) {
+        Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("http://vsu-it.ru"));
+        startActivity(browser);
     }
 }
